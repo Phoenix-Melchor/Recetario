@@ -16,7 +16,7 @@ function Navbar() {
                 </div>
                 <div className="menus">
                     {isLoggedIn ? (
-                        <Link to="/receips" className="link">Recetas</Link>
+                        <Link to="/recipes" className="link">Recetas</Link>
                     ) : (
                         <Link to="/register" className="link">Recetas</Link>
                     )}
