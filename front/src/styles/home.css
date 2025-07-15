@@ -1,0 +1,84 @@
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 93vh;
+}
+
+.homeContent{
+    width: 90%;
+    height: 90%;
+    display: flex;
+}
+
+.homeText{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+}
+
+.homeText h1{
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    font-size: 5rem;
+    text-align: end;
+}
+
+.registerbtn{
+    width: 70%;
+    height: 10%;
+    flex-direction: row;
+    display: flex;
+    border-radius: 10px;
+    background-color: #104547;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.registerbtn span{
+    width:80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    
+}
+
+.registerbtn img{
+    width: 8%;
+    height: 90%;
+}
+
+.registerbtn:hover{
+    background-color: #e9d8c0;
+    color: #104547;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.homeImage{
+    display: flex;
+    width: 50%;
+    height: 100%;
+}
+
+.homeImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
