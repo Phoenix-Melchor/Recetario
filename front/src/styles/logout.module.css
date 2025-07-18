@@ -1,0 +1,25 @@
+.main-container{
+    width: 100%;
+    height: 93vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-form{
+    width: 30%;
+    height: 60%;
+    border-radius: 10px;
+    background-color: #104547;
+}
+
+.logout-form h2{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 3rem;
+    color: white;
+    margin:0;
+}

@@ -6,6 +6,7 @@ import Recipes from './components/recipes.js';
 import Ingredients from './components/ingredients.js';
 import Register from './components/register.js';
 import Login from './components/login.js';
+import Logout from './components/logout.js';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/ingredients' element={<Ingredients/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/logout' element={<Logout/>}/>
       </Routes>
     </div>
   );

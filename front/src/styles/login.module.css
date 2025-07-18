@@ -6,14 +6,14 @@
     justify-content: center;
 }
 
-.register-form{
+.login-form{
     width: 30%;
     height: 60%;
     border-radius: 10px;
     background-color: #104547;
 }
 
-.register-form h2{
+.login-form h2{
     width: 100%;
     height: 20%;
     display: flex;
@@ -24,7 +24,7 @@
     margin:0;
 }
 
-.register-labels{
+.login-labels{
     width: 100%;
     height: 80%;
     flex-direction: column;
@@ -33,16 +33,7 @@
     align-items: center;
 }
 
-.loginbtn{
-    width: 70%;
-    height: 8%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-
-.register-labels label{
+.login-labels label{
     width: 70%;
     height: 7%;
     flex-direction: column;
@@ -51,7 +42,7 @@
     font-size: 2rem;
 }
 
-.register-labels input{
+.login-labels input{
     width: 70%;
     height: 9%;
     flex-direction: column;
@@ -64,14 +55,18 @@
     outline: none;
 }
 
-.register-labels button{
+#username{
+    text-transform: lowercase;
+}
+
+.login-labels button{
     width: 40%;
     height: 10%;
     font-size: 1.5rem;
     border-radius: 10px;
 }
 
-.register-labels button:hover{
+.login-labels button:hover{
     background-color: #e9d8c0;
     color: #104547;
     transition: background-color 0.3s ease, color 0.3s ease;

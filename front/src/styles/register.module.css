@@ -1,4 +1,4 @@
-.main-container{
+.main_container{
     width: 100%;
     height: 93vh;
     display: flex;
@@ -6,14 +6,14 @@
     justify-content: center;
 }
 
-.login-form{
+.register_form{
     width: 30%;
     height: 60%;
     border-radius: 10px;
     background-color: #104547;
 }
 
-.login-form h2{
+.register_form h2{
     width: 100%;
     height: 20%;
     display: flex;
@@ -24,7 +24,7 @@
     margin:0;
 }
 
-.login-labels{
+.register_labels{
     width: 100%;
     height: 80%;
     flex-direction: column;
@@ -33,7 +33,16 @@
     align-items: center;
 }
 
-.login-labels label{
+.loginbtn{
+    width: 70%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.register_labels label{
     width: 70%;
     height: 7%;
     flex-direction: column;
@@ -42,7 +51,7 @@
     font-size: 2rem;
 }
 
-.login-labels input{
+.register_labels input{
     width: 70%;
     height: 9%;
     flex-direction: column;
@@ -53,17 +62,30 @@
     border: none;
     padding-left: 10px;
     outline: none;
+    color: #000;
 }
 
-.login-labels button{
+.register_labels button{
     width: 40%;
     height: 10%;
     font-size: 1.5rem;
     border-radius: 10px;
 }
 
-.login-labels button:hover{
+.register_labels button:hover{
     background-color: #e9d8c0;
     color: #104547;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.error_message {
+    animation: shake 0.3s ease;
 }
