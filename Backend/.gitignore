@@ -1,0 +1,17 @@
+# Entorno virtual
+env/
+__pycache__/
+*/__pycache__/
+
+# Archivos de base de datos local (SQLite)
+*.db
+
+# Archivos de configuración sensibles
+.env
+config.py
+
+# Archivos de Python compilados
+*.pyc
+
+# Logs, si tienes
+*.log
