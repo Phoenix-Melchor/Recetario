@@ -9,5 +9,7 @@ export const registerUser = async (user) => {
 
 export const loginUser = async (user) => {
   const response = await axios.post(`${API_URL}/login`, user);
+  localStorage.setItem('token', response.data.token);
+  localStorage.setItem('refresh_token', response.data.refresh_token);
   return response.data;
 };

@@ -2,24 +2,22 @@ import React, { use, useEffect, useState } from "react";
 import styles from '../styles/navbar.module.css'
 import { Link } from "react-router-dom";
 import {jwtDecode} from 'jwt-decode';
+import { getUsername, isTokenValid } from "../utils/tokenUtils";
 
 function Navbar() {
-     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const token = localStorage.getItem('token');
     const refreshToken = localStorage.getItem('refresh_token');
     useEffect (() => {
+        const loginBtn = document.getElementById('login_btn');
+        
         try {
-            if (token) {
-                const decodedToken = jwtDecode(token);
+            if (token && isTokenValid(token)) {
                 setIsLoggedIn(true)
-                const loginBtn = document.getElementById('login_btn');
-                loginBtn.textContent = decodedToken.sub;
-
-            } else if (refreshToken) {
-                const decodedRefreshToken = jwtDecode(refreshToken);
+                loginBtn.textContent = getUsername(token);
+            } else if (refreshToken && isTokenValid(refreshToken)) {
                 setIsLoggedIn(true)
-                const loginBtn = document.getElementById('login_btn');
-                loginBtn.textContent = decodedRefreshToken.sub;
+                loginBtn.textContent = getUsername(refreshToken);
             }
         } catch (error) {
             console.error(error);
@@ -38,7 +36,6 @@ function Navbar() {
                     <Link to="/" className={styles.link}>Home</Link>
                 </div>
                 <div className={styles.menus}>
-                    {console.log(isLoggedIn)}
                     {isLoggedIn ? (
                         <Link to="/recipes" className={styles.link}>Recetas</Link>
                     ) : (
@@ -53,9 +50,9 @@ function Navbar() {
                     )
                     }
                 </div>
-                <div>
-                    <Link to={route} id="login_btn" className={styles.login}>Iniciar Sesión</Link>
-                </div>
+            </div>
+            <div className="">
+                <Link to={route} id="login_btn" className={styles.login}>Iniciar Sesión</Link>
             </div>
         </div>
     );

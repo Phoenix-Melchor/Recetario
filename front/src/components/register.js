@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { loginUser, registerUser } from "../services/Auth";
 
 function Register() {
-    const usernameRef = useRef();
+    const username = useRef();
     
     const register = async (e) => {
         e.preventDefault();
@@ -13,20 +13,16 @@ function Register() {
                 username: e.target.username.value.trim().toLowerCase(),
                 password: e.target.password.value
             };
-            const response = await registerUser(newUser);
-            console.log(response);
-            const username = await loginUser(newUser);
-            console.log(username);
-            localStorage.setItem('token', username.token);
-            localStorage.setItem('refresh_token', username.refresh_token);
+            await registerUser(newUser);
+            await loginUser(newUser);
             window.location.reload();
             window.location.href = '/';
-
         }
         catch (error) {
             const response = error?.response;
             var detail = response?.data?.detail || "Ocurrio un error";
-            var username_input = usernameRef.current;
+            var username_input = username.current;
+            
             username_input.style.border = '2px solid red';
             username_input.classList.add(styles.error_message);
             username_input.addEventListener('animationend',() => {
@@ -43,10 +39,10 @@ function Register() {
                 <h2>Registrarse</h2>
                 <form onSubmit={register} className={styles.register_labels}>
                     <label htmlFor="username">Usuario:</label>
-                    <input ref={usernameRef} type="text" id={styles.username} name="username" required />
+                    <input ref={username} type="text" name="username" required />
                     <br/><br/><br/>
                     <label htmlFor="password">Contraseña:</label>
-                    <input type="password" id={styles.password} name="password" required />
+                    <input type="password" name="password" required />
                     <br/><br/><br/><br/><br/><br/>
                     <button type="submit">Registrarse</button>
                     <Link to="/login" className={styles.loginbtn}>¿Ya tienes una cuenta? Inicia sesión</Link>
