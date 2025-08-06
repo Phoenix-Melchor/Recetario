@@ -1,12 +1,164 @@
 import React from "react";
+import styles from '../styles/recipes.module.css';
+import pizza from '../assets/pizza.jpg';
 
 function Recipes() {
-    return (
-        <div className="receips">
-            <h2>Lista de Recetas</h2>
-            <p>Aquí puedes ver las recetas disponibles.</p>
+const recipes = [
+  {
+    id: 1,
+    title: "Pizza Napolitana",
+    image: pizza,
+    time: "30 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 2,
+    title: "Ramen Japonés",
+    image: pizza,
+    time: "45 min",
+    difficulty: "Media",
+  },
+  {
+    id: 3,
+    title: "Tacos al Pastor",
+    image: pizza,
+    time: "20 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 1,
+    title: "Pizza Napolitana",
+    image: pizza,
+    time: "30 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 2,
+    title: "Ramen Japonés",
+    image: pizza,
+    time: "45 min",
+    difficulty: "Media",
+  },
+  {
+    id: 3,
+    title: "Tacos al Pastor",
+    image: pizza,
+    time: "20 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 1,
+    title: "Pizza Napolitana",
+    image: pizza,
+    time: "30 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 2,
+    title: "Ramen Japonés",
+    image: pizza,
+    time: "45 min",
+    difficulty: "Media",
+  },
+  {
+    id: 3,
+    title: "Tacos al Pastor",
+    image: pizza,
+    time: "20 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 1,
+    title: "Pizza Napolitana",
+    image: pizza,
+    time: "30 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 2,
+    title: "Ramen Japonés",
+    image: pizza,
+    time: "45 min",
+    difficulty: "Media",
+  },
+  {
+    id: 3,
+    title: "Tacos al Pastor",
+    image: pizza,
+    time: "20 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 1,
+    title: "Pizza Napolitana",
+    image: pizza,
+    time: "30 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 2,
+    title: "Ramen Japonés",
+    image: pizza,
+    time: "45 min",
+    difficulty: "Media",
+  },
+  {
+    id: 3,
+    title: "Tacos al Pastor",
+    image: pizza,
+    time: "20 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 1,
+    title: "Pizza Napolitana",
+    image: pizza,
+    time: "30 min",
+    difficulty: "Fácil",
+  },
+  {
+    id: 2,
+    title: "Ramen Japonés",
+    image: pizza,
+    time: "45 min",
+    difficulty: "Media",
+  },
+  {
+    id: 3,
+    title: "Tacos al Pastor",
+    image: pizza,
+    time: "20 min",
+    difficulty: "Fácil",
+  },
+  
+];
+
+  return (
+    <div className={styles.main_container}>
+      <div className={styles.title_container}>
+        <div className={styles.title}>
+          <h1>Recetas</h1>
         </div>
-    );
+        <div className={styles.search}>
+          <input type="text" placeholder="Buscar recetas..."/>
+          <button>+</button>
+        </div>
+        {/* {recipes.length === 0 ? <p>No hay recetas disponibles</p> : null} */}
+      </div>
+      <div className={styles.container}>
+        {recipes.map((recipe) => (
+        <div className={styles.card} key={recipe.id}>
+          <img src={recipe.image} alt={recipe.title} className={styles.image} />
+          <div className={styles.info}>
+            <h3 className={styles.recipes_title}>{recipe.title}</h3>
+            <p className={styles.details}>{recipe.time} · {recipe.difficulty}</p>
+            <button className={styles.button}>Ver receta</button>
+          </div>
+        </div>
+      ))}
+      </div>
+    </div>
+  );
 }
 
 export default Recipes;
