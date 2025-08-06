@@ -1,12 +1,13 @@
 import { jwtDecode } from "jwt-decode";
 
-export function isTokenValid(token) {
+export function isTokenValid(token, refreshToken) {
     if (!token) return false;
 
     try {
         const decodedToken = jwtDecode(token);
+        const decodedRefreshToken = jwtDecode(refreshToken);
         const currentTime = Date.now() / 1000;
-        if (decodedToken.exp > currentTime){
+        if (decodedToken.exp > currentTime || decodedRefreshToken.exp > currentTime) {
             return true;
         } else {
             deleteToken();

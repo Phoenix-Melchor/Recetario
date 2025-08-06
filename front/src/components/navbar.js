@@ -12,12 +12,9 @@ function Navbar() {
         const loginBtn = document.getElementById('login_btn');
         
         try {
-            if (token && isTokenValid(token)) {
+            if (token && refreshToken && isTokenValid(token, refreshToken)) {
                 setIsLoggedIn(true)
                 loginBtn.textContent = getUsername(token);
-            } else if (refreshToken && isTokenValid(refreshToken)) {
-                setIsLoggedIn(true)
-                loginBtn.textContent = getUsername(refreshToken);
             }
         } catch (error) {
             console.error(error);

@@ -6,10 +6,11 @@ import { isTokenValid } from "../utils/tokenUtils";
 
 function Home() {
     const token = localStorage.getItem('token');
+    const refreshToken = localStorage.getItem('refresh_token');
     const [hovered, setHovered] = useState(false);
     var route = "";
     route = "/register"
-    if (token && isTokenValid(token)) {route = "/recipes"}
+    if (token && refreshToken && isTokenValid(token, refreshToken)) {route = "/recipes"}
 
     return (
         <div className={styles.home}>
