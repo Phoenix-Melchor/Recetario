@@ -25,6 +25,7 @@ class Recipes(Base):
     description = Column(String)
     ingredients = relationship("Ingredients", secondary=recipe_ingredients_table, back_populates="recipes_ingredients")
     instructions = Column(String)
+    user_id = Column(Integer, ForeignKey("users.id"))
 
 class Ingredients(Base):
     __tablename__ = "ingredients"
