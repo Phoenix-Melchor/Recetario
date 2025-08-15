@@ -7,15 +7,18 @@ import Ingredients from './components/ingredients.js';
 import Register from './components/register.js';
 import Login from './components/login.js';
 import Logout from './components/logout.js';
+import AddRecipe from './components/add_recipes.js';
 
 
 function App() {
   return (
     <div className='app'>
       <Navbar/>
+      
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/recipes' element={<Recipes/>}/>
+        <Route path='/add-recipe' element={<AddRecipe/>}/>
         <Route path='/ingredients' element={<Ingredients/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>

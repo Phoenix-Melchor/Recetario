@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import home1 from '../assets/home1.jpg';
 import styles from '../styles/home.module.css';
 import { Link } from "react-router-dom";
 import { isTokenValid } from "../utils/tokenUtils";
@@ -23,7 +22,7 @@ function Home() {
                     </Link>
                 </div>
                 <div className={styles.homeImage}>
-                    <img src={home1} alt="Home" className={styles.homeImg}/>
+                    <img src="/home1.jpg" alt="Home" className={styles.homeImg}/>
                 </div>
             </div>           
         </div>

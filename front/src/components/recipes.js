@@ -1,6 +1,7 @@
 import React from "react";
 import styles from '../styles/recipes.module.css';
 import pizza from '../assets/pizza.jpg';
+import { Link } from "react-router-dom";
 
 function Recipes() {
 const recipes = [
@@ -141,7 +142,9 @@ const recipes = [
         </div>
         <div className={styles.search}>
           <input type="text" placeholder="Buscar recetas..."/>
-          <button>+</button>
+          <Link to="/add-recipe">
+            <button>+</button>
+          </Link>
         </div>
         {/* {recipes.length === 0 ? <p>No hay recetas disponibles</p> : null} */}
       </div>
@@ -152,7 +155,9 @@ const recipes = [
           <div className={styles.info}>
             <h3 className={styles.recipes_title}>{recipe.title}</h3>
             <p className={styles.details}>{recipe.time} · {recipe.difficulty}</p>
-            <button className={styles.button}>Ver receta</button>
+            <Link to={`/recipe/${recipe.id}`}>
+              <button className={styles.button}>Ver receta</button>
+            </Link>
           </div>
         </div>
       ))}
