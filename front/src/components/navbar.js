@@ -2,24 +2,26 @@ import React, { use, useEffect, useState } from "react";
 import styles from '../styles/navbar.module.css'
 import { Link } from "react-router-dom";
 import {jwtDecode} from 'jwt-decode';
-import { getUsername, isTokenValid } from "../utils/tokenUtils";
+import { getUsername, verify_Token } from "../utils/tokenUtils";
 
 function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const token = localStorage.getItem('token');
-    const refreshToken = localStorage.getItem('refresh_token');
     useEffect (() => {
-        const loginBtn = document.getElementById('login_btn');
-        
-        try {
-            if (token && refreshToken && isTokenValid(token, refreshToken)) {
-                setIsLoggedIn(true)
-                loginBtn.textContent = getUsername(token);
+        const checkToken = async () => {
+            const loginBtn = document.getElementById('login_btn');
+            try {
+                const valid = await verify_Token()
+                if (valid) {
+                    setIsLoggedIn(true)
+                    loginBtn.textContent = getUsername();
+                }
+            } catch (error) {
+                console.error(error);
             }
-        } catch (error) {
-            console.error(error);
         }
-    }, [token, refreshToken])
+
+        checkToken();
+    })
     const route = isLoggedIn ? "/logout" : "/login";
 
     return(
@@ -36,14 +38,14 @@ function Navbar() {
                     {isLoggedIn ? (
                         <Link to="/recipes" className={styles.link}>Recetas</Link>
                     ) : (
-                        <Link to="/register" className={styles.link}>Recetas</Link>
+                        <Link to="/login" className={styles.link}>Recetas</Link>
                     )}
                 </div>
                 <div className={styles.menus}>
                     {isLoggedIn ? (
                         <Link to="/ingredients" className={styles.link}>Ingredientes</Link>
                     ) : (
-                        <Link to="/register" className={styles.link}>Ingredientes</Link>
+                        <Link to="/login" className={styles.link}>Ingredientes</Link>
                     )
                     }
                 </div>

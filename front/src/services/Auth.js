@@ -13,3 +13,13 @@ export const loginUser = async (user) => {
   localStorage.setItem('refresh_token', response.data.refresh_token);
   return response.data;
 };
+
+export const verifyToken = async (token) => {
+  const response = await axios.post(`${API_URL}/verifyToken`, token);
+  return response.data
+}
+
+export const refreshToken = async (token) => {
+  const response = await axios.post(`${API_URL}/refreshToken`, token);
+  return response.data
+}

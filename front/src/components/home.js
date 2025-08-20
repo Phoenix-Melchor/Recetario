@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import styles from '../styles/home.module.css';
 import { Link } from "react-router-dom";
-import { isTokenValid } from "../utils/tokenUtils";
+import { verify_Token } from "../utils/tokenUtils";
 
 function Home() {
-    const token = localStorage.getItem('token');
-    const refreshToken = localStorage.getItem('refresh_token');
     const [hovered, setHovered] = useState(false);
     var route = "";
     route = "/register"
-    if (token && refreshToken && isTokenValid(token, refreshToken)) {route = "/recipes"}
+    if (verify_Token()) {route = "/recipes"}
 
     return (
         <div className={styles.home}>

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import User
-from schemas.schemas import UserOptional, UserId, UserToken
+from schemas.auth import Token, CreateTokens, CreateUser
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 from datetime import datetime, timedelta, timezone
@@ -30,7 +30,7 @@ def verify_token(token: str):
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
     except JWTError:
-        return None
+        return False
 
 def get_db():
     db = SessionLocal()
@@ -39,8 +39,8 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/register", response_model=UserId)
-def register(user: UserOptional, db: Session = Depends(get_db)):
+@router.post("/register")
+def register(user: CreateUser, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.username == user.username).first()
     if db_user:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
@@ -51,11 +51,23 @@ def register(user: UserOptional, db: Session = Depends(get_db)):
     db.refresh(new_user)
     return new_user
     
-@router.post("/login", response_model=UserToken)
-def login(user: UserOptional, db: Session = Depends(get_db)):
+@router.post("/login", response_model=CreateTokens)
+def login(user: CreateUser, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.username == user.username).first()
     if not db_user or not pwd_context.verify(user.password, db_user.password):
         raise HTTPException(status_code=400, detail="Credenciales incorrectas")
     access_token = create_access_token(data={"sub": db_user.username, "id": db_user.id})
     refresh_token = create_refresh_token(data={"sub": db_user.username, "id": db_user.id})
-    return UserToken(id = db_user.id, username = db_user.username, token = access_token, refresh_token = refresh_token, ingredients=[])
+    return CreateTokens(token = access_token, refresh_token = refresh_token)
+
+@router.post("/verifyToken")
+def verifyToken(token: Token):
+    return True if verify_token(token.token) else False
+
+@router.post("/refreshToken", response_model=Token)
+def refreshToken(token: Token):
+    payload = verify_token(token.token)
+    if payload:
+        newToken = create_access_token({"sub": payload["sub"], "id": payload["id"]})
+        return Token(token = newToken)
+    else: return False

@@ -1,12 +1,15 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class CreateUser(BaseModel):
-    user: str
+    username: str
     password: str
 
 class ReadUser(BaseModel):
     id: int
-     
-class UserToken(BaseModel):
+
+class Token(BaseModel):
     token: str
+
+class CreateTokens(Token):
     refresh_token: str
